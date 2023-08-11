@@ -29,6 +29,8 @@ class CalendarBloc extends Bloc<CalendarEvent,CalendarState>{
   
    _getCalendar(GetCalendar event, Emitter<CalendarState> emit) async{
      List<Days> days = [];
+     try{
+      emit(state.copyWith(state: BaseState.loading));
     final res = await repo.getCalendar();
      final indexOfDay = DateTime(res.year ?? 2022, int.parse(res.month ?? '-1')).weekday;
      final monthCount = DateUtils.getDaysInMonth(res.year ?? 2022, int.parse(res.month ?? '-1'));
@@ -56,12 +58,23 @@ class CalendarBloc extends Bloc<CalendarEvent,CalendarState>{
         year: res.year,
         days: days
        ),),);
+       emit(state.copyWith(state: BaseState.loaded));
+     }catch(e){
+      emit(state.copyWith(state: BaseState.error));
+     }
+    
    }
    
       _getEnum(GetEnum event, Emitter<CalendarState> emit) async{
+        try{
+          emit(state.copyWith(state: BaseState.loading));
          final res = await repo.getColors();
-      emit(state.copyWith(colors: res));
-      add(GetCalendar(year: event.year, month: event.month));
+         emit(state.copyWith(colors: res));
+         emit(state.copyWith(state: BaseState.loaded));
+         add(GetCalendar(year: event.year, month: event.month));
+        }catch(e){
+        emit(state.copyWith(state: BaseState.error));
+        }
       }
 
 

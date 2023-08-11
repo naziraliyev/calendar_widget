@@ -29,7 +29,6 @@ class CalendarPage extends StatefulWidget{
 
 class _CalendarPageState  extends State<CalendarPage>{
 
-
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -46,7 +45,10 @@ class _CalendarPageState  extends State<CalendarPage>{
   _buildBody(BuildContext context) {
     return BlocBuilder<CalendarBloc,CalendarState>(
       builder: (context,state) {
-        return Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+        final isLoading = state.state == BaseState.loading;
+        return isLoading
+        ?const Center(child: CircularProgressIndicator.adaptive(),)
+        : Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children:   [
             const SizedBox(height: 38,),

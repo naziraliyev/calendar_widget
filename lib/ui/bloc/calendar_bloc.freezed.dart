@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CalendarState {
   CalendarDataModel? get calendarData => throw _privateConstructorUsedError;
   List<ColorDataModel>? get colors => throw _privateConstructorUsedError;
+  BaseState? get state => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CalendarStateCopyWith<CalendarState> get copyWith =>
@@ -30,7 +31,10 @@ abstract class $CalendarStateCopyWith<$Res> {
           CalendarState value, $Res Function(CalendarState) then) =
       _$CalendarStateCopyWithImpl<$Res, CalendarState>;
   @useResult
-  $Res call({CalendarDataModel? calendarData, List<ColorDataModel>? colors});
+  $Res call(
+      {CalendarDataModel? calendarData,
+      List<ColorDataModel>? colors,
+      BaseState? state});
 
   $CalendarDataModelCopyWith<$Res>? get calendarData;
 }
@@ -50,6 +54,7 @@ class _$CalendarStateCopyWithImpl<$Res, $Val extends CalendarState>
   $Res call({
     Object? calendarData = freezed,
     Object? colors = freezed,
+    Object? state = freezed,
   }) {
     return _then(_value.copyWith(
       calendarData: freezed == calendarData
@@ -60,6 +65,10 @@ class _$CalendarStateCopyWithImpl<$Res, $Val extends CalendarState>
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
               as List<ColorDataModel>?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as BaseState?,
     ) as $Val);
   }
 
@@ -84,7 +93,10 @@ abstract class _$$_CalendarStateCopyWith<$Res>
       __$$_CalendarStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({CalendarDataModel? calendarData, List<ColorDataModel>? colors});
+  $Res call(
+      {CalendarDataModel? calendarData,
+      List<ColorDataModel>? colors,
+      BaseState? state});
 
   @override
   $CalendarDataModelCopyWith<$Res>? get calendarData;
@@ -103,6 +115,7 @@ class __$$_CalendarStateCopyWithImpl<$Res>
   $Res call({
     Object? calendarData = freezed,
     Object? colors = freezed,
+    Object? state = freezed,
   }) {
     return _then(_$_CalendarState(
       calendarData: freezed == calendarData
@@ -113,6 +126,10 @@ class __$$_CalendarStateCopyWithImpl<$Res>
           ? _value._colors
           : colors // ignore: cast_nullable_to_non_nullable
               as List<ColorDataModel>?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as BaseState?,
     ));
   }
 }
@@ -121,7 +138,7 @@ class __$$_CalendarStateCopyWithImpl<$Res>
 
 class _$_CalendarState extends _CalendarState {
   const _$_CalendarState(
-      {this.calendarData, final List<ColorDataModel>? colors})
+      {this.calendarData, final List<ColorDataModel>? colors, this.state})
       : _colors = colors,
         super._();
 
@@ -138,8 +155,11 @@ class _$_CalendarState extends _CalendarState {
   }
 
   @override
+  final BaseState? state;
+
+  @override
   String toString() {
-    return 'CalendarState(calendarData: $calendarData, colors: $colors)';
+    return 'CalendarState(calendarData: $calendarData, colors: $colors, state: $state)';
   }
 
   @override
@@ -149,12 +169,13 @@ class _$_CalendarState extends _CalendarState {
             other is _$_CalendarState &&
             (identical(other.calendarData, calendarData) ||
                 other.calendarData == calendarData) &&
-            const DeepCollectionEquality().equals(other._colors, _colors));
+            const DeepCollectionEquality().equals(other._colors, _colors) &&
+            (identical(other.state, state) || other.state == state));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, calendarData, const DeepCollectionEquality().hash(_colors));
+  int get hashCode => Object.hash(runtimeType, calendarData,
+      const DeepCollectionEquality().hash(_colors), state);
 
   @JsonKey(ignore: true)
   @override
@@ -166,13 +187,16 @@ class _$_CalendarState extends _CalendarState {
 abstract class _CalendarState extends CalendarState {
   const factory _CalendarState(
       {final CalendarDataModel? calendarData,
-      final List<ColorDataModel>? colors}) = _$_CalendarState;
+      final List<ColorDataModel>? colors,
+      final BaseState? state}) = _$_CalendarState;
   const _CalendarState._() : super._();
 
   @override
   CalendarDataModel? get calendarData;
   @override
   List<ColorDataModel>? get colors;
+  @override
+  BaseState? get state;
   @override
   @JsonKey(ignore: true)
   _$$_CalendarStateCopyWith<_$_CalendarState> get copyWith =>
