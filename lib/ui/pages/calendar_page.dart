@@ -82,15 +82,21 @@ class _CalendarPageState  extends State<CalendarPage>{
                       if(state.calendarData?.days?[weekItem*7+daysItem].type==null){
                         return;
                       }
-                      showDialog(context: context, builder: (_){
-                        
-                        return _buildDialogItem(context,state,weekItem,daysItem,day);
-                      });
+                     
                     },
                    child: DaysWidget(
                     day: day, 
                    color: fromHex(getColor(state, state.calendarData?.days?[weekItem*7+daysItem].type)??"#FFFFFF"),
-                    weekDay: daysItem),
+                    weekDay: daysItem, 
+                    onPressed: (String day) { 
+                       if(state.calendarData?.days?[weekItem*7+daysItem].type==null){
+                        return;
+                      }
+                       showDialog(context: context, builder: (_){
+                        return _buildDialogItem(context,state,weekItem,daysItem,day);
+                      });
+                     },),
+                    
                   );
                 }).toList()
               ) ,
